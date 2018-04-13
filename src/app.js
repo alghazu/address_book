@@ -1,4 +1,5 @@
 const displayContacts = () => {
+  toggleForm()
   const contactsList = document.querySelector('#contacts-list')
   contactsList.innerHTML = ''
   const ul = document.createElement('ul')
@@ -15,22 +16,25 @@ const displayContacts = () => {
   }
 }
 
-document.addEventListener('DOMContentLoaded',() => {
-  displayContacts()
+const toggleForm = () => {
   const addContactForm = document.querySelector('.new-contact-form')
   const addButton = document.querySelector('.add-contact')
-  addButton.addEventListener('click',() => {
-    
-    const formStyle = addContactForm.style
+  const formStyle = addContactForm.style
+  if (formStyle.display == 'none') {
+    addButton.innerHTML = 'Cancel'
+    formStyle.display = 'block'
+  } else {
+    formStyle.display = 'none'
+    addButton.innerHTML = 'Add Contact'
+  }
+}
 
-    if (formStyle.display == 'none'){
-      formStyle.display = 'block'
-    }
-    else {
-      formStyle.display = 'none'
-    }
+document.addEventListener('DOMContentLoaded',() => {
+  displayContacts()
+  const addButton = document.querySelector('.add-contact')
+  const addContactForm = document.querySelector('.new-contact-form')
 
-  })
+  addButton.addEventListener('click', toggleForm)
 
   addContactForm.addEventListener('submit', event => {
     event.preventDefault()
