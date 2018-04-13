@@ -3,15 +3,20 @@ const displayContacts = () => {
   contactsList.innerHTML = ''
   const ul = document.createElement('ul')
   const contacts = JSON.parse(localStorage.getItem('contacts'))
-  contacts.forEach((contact) => {
-    const li = document.createElement('li')
-    li.innerHTML = `<span>${contact.name} | ${contact.phone}</span>`
-    ul.appendChild(li)
-  })
-  contactsList.appendChild(ul)
+  if (contacts) {
+    contacts.forEach((contact) => {
+      const li = document.createElement('li')
+      li.innerHTML = `<span>${contact.name} | ${contact.phone}</span>`
+      ul.appendChild(li)
+    })
+    contactsList.appendChild(ul)
+  } else {
+    contactsList.innerHTML =  '<p>You have no contacts in your address book</p>'
+  }
 }
 
 document.addEventListener('DOMContentLoaded',() => {
+  displayContacts()
   const addContactForm = document.querySelector('.new-contact-form')
   addContactForm.addEventListener('submit', event => {
     event.preventDefault()
@@ -34,7 +39,8 @@ document.addEventListener('DOMContentLoaded',() => {
       notes: notes.value,
       twitter: twitter.value
     }
-
+    
+    addContactForm.reset()
     console.log(`Saving the following contact: ${JSON.stringify(contact)}`)
     const contacts = JSON.parse(localStorage.getItem('contacts')) || []
     contacts.push(contact)

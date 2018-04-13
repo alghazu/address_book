@@ -25,6 +25,6 @@ Then('I should have {int} contact in my address book', async function(contactCou
 })
  
 Then('I should not see {string}', async function(string) {
-
+  return await this.pageHasNoTexContent(string)
 })
  

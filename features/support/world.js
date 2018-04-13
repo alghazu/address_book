@@ -10,7 +10,7 @@ class AddressBookWorld {
   //Open the home page using puppeteer
   //async/await
   async  openHomePage(){
-    this.browser = await puppeteer.launch();
+    this.browser = await puppeteer.launch({headless: false, slowMo: 30});
     this.page = await this.browser.newPage();
     await this.page.goto(HOME_PAGE);
   }
@@ -24,6 +24,14 @@ class AddressBookWorld {
 
     expect(actualContent).to.be.eq(expectedContent)
   }
+
+  async pageHasNoTexContent(expectedContent){
+    const pageContent = await this.page.content()
+    const actualContent = pageContent.match(expectedContent)
+
+    expect(actualContent).to.be.eq(null)
+  }
+
   async clickOnButton(btnName) {
     const btnSelector = this.btnSelectorFromName(btnName.toLowerCase())
     await this.page.waitForSelector(btnSelector)
