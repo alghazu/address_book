@@ -2,13 +2,14 @@ document.addEventListener('DOMContentLoaded',() => {
   const addContactForm = document.querySelector('.new-contact-form')
   addContactForm.addEventListener('submit', event => {
     event.preventDefault()
+    const localStorage = window.localStorage
     const{
       name,
       email,
       phone,
       company,
       notes,
-      twitter,
+      twitter
     } = addContactForm.element
 
     const contact = {
@@ -18,11 +19,10 @@ document.addEventListener('DOMContentLoaded',() => {
       phone: phone.value,
       company: company.value,
       notes: notes.value,
-      twitter: twitter.value,
+      twitter: twitter.value
     }
 
-
-
     console.log(`Saving the following contact: ${JSON.stringify(contact)}`)
+    localStorage.setItem('contancts', JSON.stringify([contact]))
   })
 })
