@@ -18,6 +18,20 @@ const displayContacts = () => {
 document.addEventListener('DOMContentLoaded',() => {
   displayContacts()
   const addContactForm = document.querySelector('.new-contact-form')
+  const addButton = document.querySelector('.add-contact')
+  addButton.addEventListener('click',() => {
+    
+    const formStyle = addContactForm.style
+
+    if (formStyle.display == 'none'){
+      formStyle.display = 'block'
+    }
+    else {
+      formStyle.display = 'none'
+    }
+
+  })
+
   addContactForm.addEventListener('submit', event => {
     event.preventDefault()
     const localStorage = window.localStorage
@@ -39,7 +53,7 @@ document.addEventListener('DOMContentLoaded',() => {
       notes: notes.value,
       twitter: twitter.value
     }
-    
+
     addContactForm.reset()
     console.log(`Saving the following contact: ${JSON.stringify(contact)}`)
     const contacts = JSON.parse(localStorage.getItem('contacts')) || []
