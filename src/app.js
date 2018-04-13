@@ -1,3 +1,11 @@
+const displayContacts = () => {
+  const contactsList = document.querySelector('#contacts-list')
+  const contacts = JSON.parse(localStorage.getItem('contacts'))
+  contacts.forEach((contact) => {
+    console.log(contact)
+  })
+}
+
 document.addEventListener('DOMContentLoaded',() => {
   const addContactForm = document.querySelector('.new-contact-form')
   addContactForm.addEventListener('submit', event => {
@@ -23,6 +31,10 @@ document.addEventListener('DOMContentLoaded',() => {
     }
 
     console.log(`Saving the following contact: ${JSON.stringify(contact)}`)
-    localStorage.setItem('contacts', JSON.stringify([contact]))
+    const contacts = JSON.parse(localStorage.getItem('contacts')) || []
+    contacts.push(contact)
+    localStorage.setItem('contacts', JSON.stringify(contacts))
+    displayContacts()
+
   })
 })
