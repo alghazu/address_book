@@ -25,7 +25,6 @@ Then('I should have {int} contact in my address book', async function(contactCou
 })
  
 Then('I should not see {string}', async function(string) {
-  // Write code here that turns the phrase above into concrete actions
-  return 'pending'
+
 })
  

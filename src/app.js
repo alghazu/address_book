@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded',() => {
       company,
       notes,
       twitter
-    } = addContactForm.element
+    } = addContactForm.elements
 
     const contact = {
       id: Date.now(),
@@ -23,6 +23,6 @@ document.addEventListener('DOMContentLoaded',() => {
     }
 
     console.log(`Saving the following contact: ${JSON.stringify(contact)}`)
-    localStorage.setItem('contancts', JSON.stringify([contact]))
+    localStorage.setItem('contacts', JSON.stringify([contact]))
   })
 })
