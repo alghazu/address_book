@@ -1,9 +1,14 @@
 const displayContacts = () => {
   const contactsList = document.querySelector('#contacts-list')
+  contactsList.innerHTML = ''
+  const ul = document.createElement('ul')
   const contacts = JSON.parse(localStorage.getItem('contacts'))
   contacts.forEach((contact) => {
-    console.log(contact)
+    const li = document.createElement('li')
+    li.innerHTML = `<span>${contact.name} | ${contact.phone}</span>`
+    ul.appendChild(li)
   })
+  contactsList.appendChild(ul)
 }
 
 document.addEventListener('DOMContentLoaded',() => {
